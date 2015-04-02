@@ -1,0 +1,80 @@
+<link href="${WEB_PATH}/css/jpaginate.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${WEB_PATH}/js/jquery.paginate.js"></script>
+<script type="text/javascript" src="${WEB_PATH}/js/My97DatePicker/WdatePicker.js"></script>
+<div class="order">
+	<form action="${WEB_PATH}/message/list" method="post" id="doSearch">
+	<span class="search fr">
+		<input type="hidden" name="page" value="${page.currentPage}" />
+<!-- 		<label>用户名称: </label> -->
+        <input type="text" class="inputW Wdate" id="start" name="time" value="${time!}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+	  <input type="submit" value="搜索" class="inputBtn" />
+	</span>
+    </form>
+</div>
+<div class="list">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+		<td bgcolor="#c1daf8"><table width="100%" border="0" cellspacing="1" cellpadding="0">
+                      <tr class="blue b">
+                        <td height="40" align="center" bgcolor="#e7f4fd">序号</td>
+                        <td align="center" bgcolor="#e7f4fd">用户名</td>
+                        <td align="center" bgcolor="#e7f4fd">消息内容</td>
+                        <td align="center" bgcolor="#e7f4fd">状态</td>
+                        <td align="center" bgcolor="#e7f4fd">时间</td>
+                        <td align="center" bgcolor="#e7f4fd">操作</td>
+                      </tr>
+                      <#list list as message>
+                      <tr>
+                        <td height="40" align="center" bgcolor="#ffffff">${message_index+1}</td>
+                        <td align="center" bgcolor="#ffffff">${message.user.name}</td>
+                        <td align="center" bgcolor="#ffffff">${message.msg!}</td>
+                        <#if message.status=="0">
+                        <td align="center" bgcolor="#ffffff">未处理</td>
+                        <#else>
+                        <td align="center" bgcolor="#ffffff">已处理</td>
+                        </#if>
+                        <td align="center" bgcolor="#ffffff">${message.createTime!}</td>
+                        <td align="center" bgcolor="#ffffff">
+                        <#if message.status=="0">
+                          <a href="${WEB_PATH}/feedback/update/${message.id}" class="red textLine" >修改</a>&nbsp;
+                          </#if>
+                        </td>
+                      </tr>
+                      </#list>
+                    </table></td>
+	  </tr>
+	</table>
+	<#if page.totalPage gt 1>
+	<div id="changepage">
+	</div>
+	</#if>
+	<div id="pageSizeDiv" style="float: right;">
+		共: ${page.totalResult}条 &nbsp;&nbsp;
+	</div>
+</div>		
+
+<script type="text/javascript">
+
+/**分页开始**/
+$(function(){
+	<#if page.totalPage gt 1>
+	$("#changepage").paginate({
+		count 		: ${page.totalPage},
+		start 		: ${page.currentPage},
+		display     : 8,
+		border					:  true,
+		text_color  			: '#888',
+		background_color    	: '#EEE',	
+		text_hover_color  		: 'black',
+		background_hover_color	: '#CFCFCF',
+		onChange				: onChangePage
+	});
+	</#if>
+}); 
+function onChangePage(page){
+	$("input[name=page]").val( page );
+	$("form[id=doSearch]").submit();
+}
+/**分页结束**/
+
+</script>

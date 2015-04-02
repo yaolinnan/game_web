@@ -1,0 +1,79 @@
+<script type="text/javascript" src="${WEB_PATH}/js/My97DatePicker/WdatePicker.js"></script>
+<style type="text/css">
+#wrap .right .creat ul li{float:none;clear:none;}
+#wrap .right .creat ul li .cont{float:none;}
+#wrap .right .creat ul li .ation{float:none;display:inline-block;}
+</style>
+<h3>
+		<span class="fl b">
+			<a href="${WEB_PATH}/ad/list">添加广告</a>
+		</span>
+	</h3>
+
+<div class="creat">
+<form action="${WEB_PATH}/ad/add" method="POST" id="addForm" enctype="multipart/form-data">
+	<ul>
+		<li>
+			<span class="name">广告名称:</span>
+			<span class="cont">
+			<input type="text" class="inputL" id="name" name="name"/>
+			</span>
+		</li>
+		<li>
+			<span class="name">广告类型:</span>
+			<span class="cont">
+			<select class="inputL" name="type">
+			<option value="2">普通广告</option>
+			<option value="1">首页推荐</option>
+			</select>
+			</span>
+		</li>
+		<li>
+			<span class="name">广告URL:</span>
+			<span class="cont">
+			<input type="text" class="inputL" name="url"/>
+			</span>
+		</li>
+		<li>
+			<span class="name">广告有效期:</span>
+			<span class="cont">
+			<input type="text" class="inputL Wdate" id="title" name="time" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+			</span>
+		</li>
+		<li>
+			<span class="name">广告图片:</span>
+			<span class="cont">
+			<input type="file" class="inputL" name="file" id="file"/>
+			</span>
+		</li>
+		<li>
+			<span class="name">&nbsp;</span>
+			<span class="cont">
+			<input type="submit" class="button" value="确定"/>
+			</span>
+		</li>
+		
+	</ul>
+	</form>
+	<script type="text/javascript">
+// 	function add(){
+// 		var data=$("#addForm").serialize();
+// 		$.ajaxFileUpload({
+// 			url:'${WEB_PATH}/news/add',
+// 			secureuri:false,
+// 	        fileElementId:'file',
+// 			type:'post',
+// 			data:data,
+// 	        success:function(result){
+// 	        	if(result=="0"){
+// 	        		alert(添加新闻失败);
+// 	        	}
+// 	        	else
+// 	        		window.location.href="${WEB_PATH}/news/list";
+// 	        },error:function(result){
+// 	        	alert(添加新闻失败);
+// 	        }
+// 		});
+// 	}
+	</script>
+</div>

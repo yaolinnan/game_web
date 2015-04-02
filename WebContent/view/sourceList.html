@@ -1,0 +1,38 @@
+<link href="${WEB_PATH}/css/jpaginate.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${WEB_PATH}/js/jquery.paginate.js"></script>
+<script type="text/javascript" src="${WEB_PATH}/js/My97DatePicker/WdatePicker.js"></script>
+<div class="order">
+	<form action="${WEB_PATH}/source/list" method="post" id="doSearch">
+	<span class="control">
+		<a href="${WEB_PATH}/source/edit/0" class="inputBtn">添加</a>
+	</span>
+    </form>
+</div>
+<div class="list">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+		<td bgcolor="#c1daf8"><table width="100%" border="0" cellspacing="1" cellpadding="0">
+                      <tr class="blue b">
+                        <td height="40" align="center" bgcolor="#e7f4fd">序号</td>
+                        <td align="center" bgcolor="#e7f4fd">来源名称</td>
+                        <td align="center" bgcolor="#e7f4fd">链接</td>
+                        <td align="center" bgcolor="#e7f4fd">描述</td>
+                        <td align="center" bgcolor="#e7f4fd">操作</td>
+                      </tr>
+                      <#list list as source>
+                      <tr>
+                        <td height="40" align="center" bgcolor="#ffffff">${source_index+1}</td>
+                        <td align="center" bgcolor="#ffffff">${source.name!}</td>
+                        <td align="center" bgcolor="#ffffff">${source.url!}</td>
+                        <td align="center" bgcolor="#ffffff">${source.description!}</td>
+                        <td align="center" bgcolor="#ffffff">
+                          <a href="${WEB_PATH}/source/edit/${source.id}" class="red textLine" >修改</a>&nbsp;&nbsp;
+                          <a href="${WEB_PATH}/source/delete/${source.id}" class="red textLine" >删除</a>
+                        </td>
+                      </tr>
+                      </#list>
+                    </table></td>
+	  </tr>
+	</table>
+</div>		
+

@@ -1,0 +1,248 @@
+<script type="text/javascript" src="${WEB_PATH}/js/My97DatePicker/WdatePicker.js"></script>
+ <link href="${WEB_PATH}/js/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${WEB_PATH}/js/uploadify/jquery.uploadify.js"></script>
+<style type="text/css">
+#wrap .right .creat ul li{float:none;clear:none;}
+#wrap .right .creat ul li .cont{float:none;}
+#wrap .right .creat ul li .ation{float:none;display:inline-block;}
+</style>
+<h3>
+		<span class="fl b">
+			<a href="${WEB_PATH}/stategy/list">编辑攻略</a>
+		</span>
+	</h3>
+<#if stategy??>
+<div class="creat">
+<form action="${WEB_PATH}/stategy/update" method="POST" id="updateForm" enctype="multipart/form-data">
+<input type="hidden" name="id" value="${stategy.id}"/>
+	<ul>
+		<li>
+			<span class="name">攻略标题:</span>
+			<span class="cont">
+			<input type="text" class="inputL" name="title" value="${stategy.title!}" id="title"/>
+			</span>
+		</li>
+		<li>
+			<span class="name">游戏名称:</span>
+			<span class="cont">
+			<input type="text" class="inputL" name="game" value="${stategy.game!}" id="game"/>
+<!-- 			<textarea rows="10" cols="60" name="descrition" id="descrition">${news.descrition!}</textarea> -->
+			</span>
+		</li>
+		<li>
+			<span class="name">攻略时间:</span>
+			<span class="cont">
+			<input type="text" class="inputL Wdate" id="title" name="time" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" value="${stategy.time!}"/>
+			</span>
+		</li>
+<!-- 		<li> -->
+<!-- 			<span class="name">新闻类型:</span> -->
+<!-- 			<span class="cont"> -->
+<!-- 			<input type="text" class="inputL" name="type" value="${news.type!}"/> -->
+<!-- 			</span> -->
+<!-- 		</li> -->
+<!-- 		<li> -->
+<!-- 			<span class="name">新闻时间:</span> -->
+<!-- 			<span class="cont"> -->
+<!-- 			<input type="text" class="inputL Wdate" id="title" name="time" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" value="${news.time!}"/> -->
+<!-- 			</span> -->
+<!-- 		</li> -->
+		<li>
+			<span class="name">攻略来源:</span>
+			<span class="cont">
+			<select name="source" class="inputL">
+			<#list sources as source>
+			<#if stategy.source.id=source.id>
+			<option value="${source.id}" selected="selected">${source.name}</option>
+			<#else>
+			<option value="${source.id}">${source.name}</option>
+			</#if>
+			</#list>
+			</select>
+<!-- 			<input type="text" class="inputL" name="source" value="${news.source!}"/> -->
+			</span>
+		</li>
+		<li>
+			<span class="name">图片:</span>
+			<span class="cont">
+			<img alt="${stategy.title}" src="${WEB_PATH}/${stategy.image}"/>
+			<input type="file" class="inputL" name="file" id="file" value="${news.image!}"/>
+			</span>
+		</li>
+		<li>
+			<span class="name">攻略描述:</span>
+			<span class="cont">
+			<textarea rows="10" cols="60" name="content"></textarea>
+			</span>
+		</li>
+		<li>
+			<span class="name">新闻内容:</span>
+			<span class="cont">
+			<textarea rows="20" cols="60" name="content" id="content">${stategy.content!}</textarea>
+			</span>
+		</li>
+		<li>
+			<span class="name">&nbsp;</span>
+			<span class="cont">
+			<input type="submit" class="button" value="确定"/>
+			</span>
+		</li>
+		
+	</ul>
+	</form>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#uploadify").uploadify({
+            'uploader'       : '${WEB_PATH}/js/uploadify/uploadify.swf',
+            'script'         : '${WEB_PATH}/news/update',
+            'scriptData'     : '$("#updateForm").serialize()'
+            'cancelImg'      : '${WEB_PATH}/js/uploadify/uploadify-cancel.png',
+            'queueID'        : 'fileQueue',
+            'auto'           : false,
+            'multi'          : true,
+            'method'          : 'POST',
+            'simUploadLimit' : 2,
+            'buttonText'     : '上传图片'
+        });
+    });
+// 	function update(){
+// 		var title=$("#title").val();
+// 		var content=$("#content").val();
+// 		if(title==null||tilte==""){
+// 			alert("标题输入为空");
+// 			return;
+// 		}
+// 		if(content==null||content==""){
+// 			alert("内容输入为空");
+// 			return;
+// 		}
+// 		var data=$("#updateForm").serialize();
+// 		$.ajax({
+// 			url:'${WEB_PATH}/news/update',
+// 			type:'post',
+// 			data:data,
+// 	        success:function(result){
+// 	        	if(result=="0"){
+// 	        		alert(修改新闻失败);
+// 	        	}
+// 	        	else
+// 	        		window.location.href="${WEB_PATH}/news/list";
+// 	        },error:function(result){
+// 	        	alert(修改新闻失败);
+// 	        }
+// 		});
+// 	}
+	</script>
+</div>
+
+<#else>
+<div class="creat">
+<form action="${WEB_PATH}/stategy/add" method="POST" id="addForm" enctype="multipart/form-data">
+	<ul>
+		<li>
+			<span class="name">攻略标题:</span>
+			<span class="cont">
+			<input type="text" class="inputL" id="title" name="title"/>
+			</span>
+		</li>
+		<li>
+			<span class="name">游戏名称:</span>
+			<span class="cont">
+			<input type="text" class="inputL" id="game" name="game"/>
+<!-- 			<textarea rows="10" cols="60" name="descrition" id="descrition"></textarea> -->
+			</span>
+		</li>
+<!-- 		<li> -->
+<!-- 			<span class="name">资讯类型:</span> -->
+<!-- 			<span class="cont"> -->
+<!-- 			<input type="text" class="inputL" name="type"/> -->
+<!-- 			</span> -->
+<!-- 		</li> -->
+		<li>
+			<span class="name">攻略来源:</span>
+			<span class="cont">
+			<select name="source" class="inputL">
+			<#list sources as source>
+			<option value="${source.id}">${source.name}</option>
+			</#list>
+			</select>
+<!-- 			<input type="text" class="inputL" name="source"/> -->
+			</span>
+		</li>
+		<li>
+			<span class="name">攻略时间:</span>
+			<span class="cont">
+			<input type="text" class="inputL Wdate" id="title" name="time" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+			</span>
+		</li>
+<!-- 		<li> -->
+<!-- 			<span class="name">新闻时间:</span> -->
+<!-- 			<span class="cont"> -->
+<!-- 			<input type="text" class="inputL Wdate" id="title" name="time" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/> -->
+<!-- 			</span> -->
+<!-- 		</li> -->
+		<li>
+			<span class="name">图片：</span>
+			<span class="cont">
+			<input type="file" class="inputL" name="file" id="file"/>
+			</span>
+		</li>
+		<li>
+			<span class="name">攻略描述:</span>
+			<span class="cont">
+			<textarea rows="10" cols="60" name="content"></textarea>
+			</span>
+		</li>
+		<li>
+			<span class="name">攻略内容:</span>
+			<span class="cont">
+			<textarea rows="20" cols="60" name="content"></textarea>
+			</span>
+		</li>
+		<li>
+			<span class="name">&nbsp;</span>
+			<span class="cont">
+			<input type="submit" class="button" value="确定" />
+			</span>
+		</li>
+		
+	</ul>
+	</form>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#uploadify").uploadify({
+            'swf'       : '${WEB_PATH}/js/uploadify/uploadify.swf',
+            'uploader'         : '${WEB_PATH}/news/add',
+            'formData'     : '$("#addForm").serialize()',
+            'buttonImg'      : '${WEB_PATH}/js/uploadify/uploadify-cancel.png',
+            'queueID'        : 'fileQueue',
+            'auto'           : false,
+            'multi'          : true,
+            'fileTypeExts':'*.jpg;*.jpge;*.gif;*.png',
+            'fileSizeLimit':'3MB',
+            'queueSizeLimit' : 3,
+            'buttonText'     : '上传图片'
+        });
+    });
+// 	function add(){
+// 		var data=$("#addForm").serialize();
+// 		$.ajaxFileUpload({
+// 			url:'${WEB_PATH}/news/add',
+// 			secureuri:false,
+// 	        fileElementId:'file',
+// 			type:'post',
+// 			data:data,
+// 	        success:function(result){
+// 	        	if(result=="0"){
+// 	        		alert(添加新闻失败);
+// 	        	}
+// 	        	else
+// 	        		window.location.href="${WEB_PATH}/news/list";
+// 	        },error:function(result){
+// 	        	alert(添加新闻失败);
+// 	        }
+// 		});
+// 	}
+	</script>
+</div>
+</#if>

@@ -1,0 +1,91 @@
+<style type="text/css">
+#wrap .right .creat ul li{float:none;clear:none;}
+#wrap .right .creat ul li .cont{float:none;}
+#wrap .right .creat ul li .ation{float:none;display:inline-block;}
+</style>
+<h3>
+		<span class="fl b">
+			<a href="${WEB_PATH}/user/list">编辑用户</a>
+		</span>
+	</h3>
+<div class="creat">
+<form action="#" method="POST" id="addForm">
+	<ul>
+		<li>
+			<span class="name">用户姓名:</span>
+			<span class="cont">
+			<input type="text" class="inputL" name="name" id="name"/>
+			</span>
+		</li>
+		<li>
+			<span class="name">密码:</span>
+			<span class="cont">
+			<input type="password" class="inputL" name="password" id="password"/>
+			</span>
+		</li>
+		<li>
+			<span class="name">确认密码:</span>
+			<span class="cont">
+			<input type="password" class="inputL" name="password2" id="password2"/>
+			</span>
+		</li>
+		<li>
+			<span class="name">Email:</span>
+			<span class="cont">
+			<input type="text" class="inputL" name="email" id="email"/>
+			</span>
+		</li>
+		<li>
+			<span class="name">电话号码:</span>
+			<span class="cont">
+			<input type="text" class="inputL" name="telephone" id="telephone"/>
+			</span>
+		</li>
+		<li>
+			<span class="name">&nbsp;</span>
+			<span class="cont">
+			<input type="button" class="button" value="确定" onclick="add();"/>
+			</span>
+		</li>
+		
+	</ul>
+	</form>
+	<script type="text/javascript">
+	function add(){
+		if($("#name").val()==null||$("#name").val()==''){
+			tipShow("用户名为空");
+			tipClose();
+			return;
+		}
+		if($("#password").val()==null||$("#password").val()==''){
+			tipShow("密码为空");
+			tipClose();
+			return;
+		}
+		if($("#password").val()!=$("#password2").val()){
+			tipShow("两次输入密码不一致");
+			tipClose();
+			return;
+		}
+		var data=$("#addForm").serialize();
+		$.ajax({
+			url:'${WEB_PATH}/user/add',
+			type:'post',
+			data:data,
+	        success:function(result){
+	        	if(result=="2"){
+	        		tipShow("用户已经存在");
+	        		tipClose();
+	        	}
+	        	else if(result=="1")
+	        		window.location="${WEB_PATH}/user/list";
+	        		
+	        },error:function(result){
+	        	tipShow("添加失败");
+	        	tipClose();
+	        }
+		});
+	}
+	</script>
+</div>
+

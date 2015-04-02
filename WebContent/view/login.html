@@ -1,0 +1,108 @@
+<#assign WEB_PATH = request.getContextPath()>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<title>登录</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<link rel="stylesheet" href="${WEB_PATH}/css/login.css" type="text/css" charset="utf-8"/>
+		<script src="${WEB_PATH}/js/jquery.js" type="text/javascript"></script>
+	</head>
+	<body style="background:#3e6dbb;">
+		<div class="loginCon">
+			<div class="login">
+				<img src="${WEB_PATH}/images/loginLogo.png" alt="" width="701" height="125" />
+				<div class="area">
+				<form method="post" onkeyup="keyUp(event)">
+					<!--  
+					<p>
+						<label><input type="radio" name="userType" id="normal" value="0" checked="checked"/>超级管理员</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<label><input type="radio" name="userType" id="enterprise" value="1"/>业务管理员</label>
+					</p>
+					-->	
+					<p>
+						<label><input type="hidden" name="userType" id="normal" value="0" /></label>
+					</p>
+					<p>用户名:<input type="text" name="name" id="name" class="inputW" /></p>
+					<p>密　码:<input type="password" name="password" id="pwd" class="inputW" /></p>
+					<p>验证码:<input type="text" name="code" id="code" class="inputW" />
+					<img alt="看不清 换一张" src="${WEB_PATH}/code" onclick="refresh()" id="image"></img></p>
+					<p class="pBtn"><input type="button" value="&nbsp;" class="inputBtn" onclick="login()"/></p>
+				</form>
+				</div>
+			</div>
+		</div>
+		
+<div class="layer jqmWindow" style="display: none;" id="tipDiv">
+	<dl>
+		<dt>
+			<a href="#" class=""></a>
+		</dt>
+		<dd>
+			<div class="layAtion">成功/失败？</div>
+		</dd>
+	</dl>
+</div>
+		
+<script>
+
+	function refresh(){
+		$("#image").attr("src","${WEB_PATH}/code?timestamp="+new Date().getTime());
+	}
+	
+	function login() {
+		var name = $('#name').val();
+		var pwd = $('#pwd').val();
+		var code=$("#code").val();
+		if(code){
+			if(name&&pwd){
+				$.ajax({
+					url:'${WEB_PATH}/doLogin',
+					type:'post',
+					data:'name='+name+"&password="+pwd+"&code="+code,
+					success:function(result){
+						if(result=="1"){
+							alert("用户名或密码错误");
+							$('#pwd').val("");
+							refresh();
+						}
+						else if(result=="-1"){
+							alert("验证码错误");
+							$('#code').val("");
+							refresh();
+						}else{
+							//alert("登录成功");
+							window.location="${WEB_PATH}/user/list";
+						}
+					}
+				});
+			}
+			else
+				alert("用户名或密码不能为空！");
+		}
+		else{
+			alert("验证码不能为空！");
+		}
+	}
+	
+	function keyUp(evt){
+		var tempEvt = evt || event;
+		stopBubble(tempEvt);
+		var keyNo = (null != tempEvt.keyCode && "" != tempEvt.keyCode ? tempEvt.keyCode : tempEvt.which);
+		if (keyNo==13) login();
+	}
+	
+	function stopBubble(evt){
+		//阻止事件冒泡
+		if (evt && evt.cancelBubble) {
+		    event.cancelBubble = true;
+		} else {
+		    if (evt.preventDefault) evt.preventDefault();
+		    if (evt.stopPropagation) evt.stopPropagation();
+		}
+	}
+	
+	
+	
+</script>
+	</body>
+</html>

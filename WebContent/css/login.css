@@ -1,0 +1,217 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*
+ 主题名称:市场开拓公用样式
+ 描述: 公用样式文件
+ 作者: 李建
+ */
+
+/* Reset
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+	margin:0;  padding:0; border:0; outline:0; font-size:100%;
+}
+body {
+	font:14px/140% Arial, "宋体"; color:#333;
+}
+html, body {height:100%;}
+ol, ul, dl {
+	list-style: none;
+	list-style-type: none;
+}
+ul {
+	margin:0;padding:0;
+}
+ul li {
+	list-style:none;
+}
+.fl{
+	float:left;
+}
+.fr{
+	float:right;
+}
+a{
+	color:#3e3e3e;
+	text-decoration:none;
+}
+a:hover{
+	text-decoration:none;
+	color:#ff6c26;
+}
+.hide{
+	display:none;
+}
+
+
+/* 字体
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.b{
+	font-weight:bold;
+}
+.blue{
+	color:#1370bd;
+}
+.white{
+	color:#fff;
+}
+.n{
+	font-weight:normal;
+}
+.font14{
+	font-size:14px;
+}
+.textLine{
+	text-decoration:underline;
+}
+
+
+/* 登录 */
+.loginCon{
+	background:url(../images/loginBg.jpg) repeat-x;
+	min-height:768px;
+}
+.login{
+	padding:112px 0 0 0;
+	width:701px;
+	margin:0 auto;
+}
+.login .area{
+	width:531px;
+	height:280px;
+	padding:35px 0 0 80px;
+	background:url(../images/loginAreaBg.jpg) no-repeat;
+	margin-left:45px;
+	font-size:18px;
+	font-weight:bold;
+}
+.login .area p{
+	padding-bottom:15px;
+}
+.login .area p.pSel{
+	padding-bottom:20px;
+}
+.login .area p.pBtn{
+	text-indent:143px;
+}
+.login .area .inputW{
+	border:1px solid #b2b2b2;
+	width:300px;
+	height:30px;
+	margin:0 18px;
+	text-indent:5px;
+}
+.login .area .inputWS{
+	border:1px solid #b2b2b2;
+	width:100px;
+	height:30px;
+	margin:0 18px;
+	text-indent:5px;
+}
+.login .area .inputWSel{
+	border:1px solid #3862aa;
+	width:300px;
+	height:30px;
+	margin:0 18px;
+	text-indent:5px;
+}
+.login .area .inputBtn{
+	width:167px;
+	height:59px;
+	background:url(../images/loginButton.jpg) no-repeat;
+	border:0;
+	cursor:pointer;
+}
+.login .area .inputSel{
+	margin-left:18px;
+}
+
+/* 忘记密码 */
+#header{
+	height:92px;
+	background:url(../images/headBg.jpg) repeat-x;
+}
+.contain{
+	width:954px;
+	margin:0 auto;
+}
+.password{
+	width:952px;
+	margin:0 auto;
+	border:1px solid #2f5795;
+	border-width:0 1px;
+}
+.password dl dt{
+	height:53px;
+	background:url(../images/titleBg.jpg) repeat-x;
+	font-size:24px;
+	font-weight:bold;
+	color:#1370BD;
+	line-height:53px;
+	text-indent:15px;
+}
+.password dl dd{
+	background:#f8fdff;
+	padding:62px 0 100px 0;
+	position:relative;
+	min-height:345px;
+}
+.password dl dd ul li{
+	height:70px;
+	padding-left:150px;
+}
+.password dl dd ul li .name{
+	width:100px;
+	float:left;
+	text-align:right;
+	color:#1370bd;
+	font-size:14px;
+	font-weight:bold;
+	line-height:33px;
+}
+.password dl dd ul li .fill{
+	padding:0 0 0 24px;
+	float:left;
+}
+.password dl dd ul li .ation{
+	padding-left:15px;
+	line-height:33px;
+	float:left;
+	color:#ff0101;
+	font-size:12px;
+}
+.password dl dd ul li .ation img{
+	position:relative;
+	top:-3px;
+}
+.password dl dd ul li.liBtn{
+	padding-left:393px;
+}
+.password dl dd ul li.liBottom{
+	height:100px;
+	background:#e8f2fc;
+	position:absolute;
+	bottom:0;
+	width:952px;
+	padding:0;
+}
+.password dl dd ul li .inputW{
+	width:343px;
+	height:31px;
+	border:1px solid #a8c9ea;
+	background:#f3f8fe;
+	color:#919eb1;
+	text-indent:5px;
+	font-size:14px;
+}
+.password dl dd ul li .inputBtn{
+	width:117px;
+	height:35px;
+	background:url(../images/buttonBg.jpg) no-repeat;
+	cursor:pointer;
+	color:#fff;
+	font-size:14px;
+	font-weight:bold;
+	border:0;
+}

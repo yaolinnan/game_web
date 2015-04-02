@@ -1,0 +1,61 @@
+<#assign WEB_PATH = request.getContextPath()>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/xml; charset=UTF-8">	
+<title>Error Page</title>
+<style>
+body, table, td {
+  font-family: arial, sans-serif;
+  font-size: 12px;
+}
+td.header {
+  color: white;
+  background: navy;
+}
+.errorReport {
+  display: none;
+}
+
+h1 {
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:61px;
+	color:#343434;
+	margin:0;
+	padding:0 0 20px;
+	font-weight:normal;
+	text-align:center;
+}
+h1 span {
+	background:transparent url('../images/error.gif') no-repeat scroll center left;
+	padding-left:80px;
+}
+h2 {
+	margin:0;
+	padding:0;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#666;
+	text-align:center;
+}
+</style>
+<script type='text/javascript'>
+function displayError() {
+  errorReport.style.display = 'block';
+}
+</script>
+</head>
+
+<body>
+
+ <DIV class="error-info">
+
+	<H1><SPAN>Error 500</SPAN></H1>
+
+	<H2>执行此页面时系统有错误报出来. 
+	
+	</H2>
+		
+ </DIV>
+
+
+</body>
+</html>

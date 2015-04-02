@@ -1,0 +1,53 @@
+<script type="text/javascript" src="${WEB_PATH}/js/My97DatePicker/WdatePicker.js"></script>
+ <link href="${WEB_PATH}/js/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${WEB_PATH}/js/uploadify/jquery.uploadify.js"></script>
+<style type="text/css">
+#wrap .right .creat ul li{float:none;clear:none;}
+#wrap .right .creat ul li .cont{float:none;}
+#wrap .right .creat ul li .ation{float:none;display:inline-block;}
+</style>
+<h3>
+		<span class="fl b">
+			<a href="${WEB_PATH}/message/list">编辑消息</a>
+		</span>
+	</h3>
+<div class="creat">
+<form action="${WEB_PATH}/message/add" method="POST" id="addForm">
+	<ul>
+		<li>
+			<span class="name">消息类型:</span>
+			<span class="cont">
+			<select id="type" name="type" class="inputL">
+			<option value="0">普通消息</option>
+			</select>
+			</span>
+		</li>
+		<li>
+			<span class="name">消息详情:</span>
+			<span class="cont">
+			<textarea rows="10" cols="60" name="content" id="content"></textarea>
+			</span>
+		</li>
+		<li>
+			<span class="name">指定用户:</span>
+			<span class="cont">
+			<select name="userId" class="inputL">
+			<option value="0">所有用户</option>
+			<#list list as user>
+			<option value="${user.id}">${user.name}</option>
+			</#list>
+			</select>
+			</span>
+		</li>
+		
+		<li>
+			<span class="name">&nbsp;</span>
+			<span class="cont">
+			<input type="submit" class="button" value="确定" />
+			</span>
+		</li>
+		
+	</ul>
+	</form>
+	
+</div>
